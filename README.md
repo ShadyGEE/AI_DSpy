@@ -24,11 +24,9 @@ Optimized with **BootstrapFewShot** on 8 training examples
 | Valid SQL | 50% | 88% | +38% |
 | Execution Success | 38% | 75% | +37% |
 
-## Trade-offs & Assumptions
+## Trade-offs & Assumptions **First Point is VERY IMPORTANT**
 
-**VERY IMPORTANT**
 - **Date Range**: Database has 2012-2023 data (not 1997), so I updated the sample questions to use 2013 instead, if still used 1997 all answers will be wrong and based on assumptions, also updated marketing_calendar.md to year 2013.
 - **CostOfGoods**: Approximated as `0.7 * UnitPrice` (no cost field in Northwind DB)
 - **TF-IDF**: Used over embeddings (no dependencies, fast for 8 chunks)
 - **Repair Bound**: Max 2 iterations to prevent loops
-"# AI_DSpy" 
