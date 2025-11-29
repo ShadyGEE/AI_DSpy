@@ -29,9 +29,13 @@ class SQLiteTool:
         tables = [row[0] for row in cursor.fetchall()]
 
         schema_lines = [
-            "Tables: Categories, Products, \"Order Details\" (MUST quote!), Orders, Customers",
-            "Date: strftime('%Y-%m',Orders.OrderDate)='2013-06'. Revenue: SUM(UnitPrice*Quantity*(1-Discount))",
-            "AOV: Revenue/COUNT(DISTINCT OrderID). CostOfGoods: 0.7*UnitPrice"
+            "Important tables: Categories, Products, \"Order Details\", Orders, Customers",
+            "Date filters: strftime('%Y-%m',OrderDate)='2013-06' for Summer month ONLY. strftime('%Y',OrderDate)='2013' for entire year",
+            "Revenue (TOTAL): SUM(UnitPrice*Quantity*(1-Discount)). AOV (average): Revenue/COUNT(DISTINCT OrderID)",
+            "Gross Margin (TOTAL): SUM((UnitPrice-0.7*UnitPrice)*Quantity*(1-Discount)). Per-order avg: Margin/COUNT(DISTINCT OrderID)",
+            "MUST JOIN Orders when using OrderDate. MUST JOIN Categories when filtering CategoryName. MUST JOIN Customers for CompanyName",
+            "Categories.CategoryName values: 'Beverages', 'Condiments', etc. (NOT 'Summer Beverages' - that's a campaign!)",
+            "JOIN path: Categories->Products->\"Order Details\"->Orders->Customers"
         ]
 
         # Only show key tables

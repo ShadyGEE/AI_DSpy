@@ -185,7 +185,10 @@ class HybridAgent:
         # Use retrieved docs if available
         docs = state.get("retrieved_docs", [])
 
-        constraints = self.planner(question=state["question"], documents=docs)
+        # Get schema for context-aware constraint extraction
+        schema = self.db_tool.get_schema()
+
+        constraints = self.planner(question=state["question"], documents=docs, schema=schema)
         state["constraints"] = constraints
 
         state["trace"].append(f"PLANNER: Constraints = {constraints}")
